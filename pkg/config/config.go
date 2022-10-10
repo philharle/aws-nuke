@@ -131,9 +131,9 @@ func (c *Nuke) ValidateAccount(accountID string, aliases []string) error {
 	}
 
 	for _, alias := range aliases {
-		if strings.Contains(strings.ToLower(alias), "prod") {
+		if strings.Contains(strings.ToLower(alias), "prod") && !strings.Contains(strings.ToLower(alias), "nonprod") {
 			return fmt.Errorf("You are trying to nuke an account with the alias '%s', "+
-				"but it has the substring 'prod' in it. Aborting.", alias)
+				"but it has the substring 'prod' in it (and doesn't have the substring 'nonprod'). Aborting.", alias)
 		}
 	}
 
@@ -255,3 +255,4 @@ func (endpoints CustomEndpoints) GetURL(region, serviceType string) string {
 	}
 	return s.URL
 }
+

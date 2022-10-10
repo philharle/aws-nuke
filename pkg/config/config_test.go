@@ -215,6 +215,7 @@ func TestConfigValidation(t *testing.T) {
 		{ID: "555133742", Aliases: []string{"production"}, ShouldFail: true},
 		{ID: "555133742", Aliases: []string{}, ShouldFail: true},
 		{ID: "555133742", Aliases: []string{"staging", "prod"}, ShouldFail: true},
+		{ID: "555133742", Aliases: []string{"staging", "nonprod"}, ShouldFail: false},
 	}
 
 	for i, tc := range cases {
@@ -306,3 +307,4 @@ func TestGetCustomRegion(t *testing.T) {
 
 	})
 }
+
